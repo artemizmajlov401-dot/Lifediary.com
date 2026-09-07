@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Дневник жизни</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app" id="app">
+        <!-- РЕГИСТРАЦИЯ -->
+        <div class="screen register-screen" id="registerScreen">
+            <div class="register-box">
+                <h1>📖 Дневник жизни</h1>
+                <p>Создай свой личный дневник</p>
+                <div class="register-form">
+                    <input type="text" id="regName" placeholder="Ваше имя" class="reg-input">
+                    <input type="text" id="regBirth" placeholder="Дата рождения" class="reg-input">
+                    <input type="text" id="regCity" placeholder="Где вы живёте" class="reg-input">
+                    <button id="registerBtn" class="reg-btn">Начать вести дневник</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ОСНОВНОЙ ЭКРАН -->
+        <div class="screen main-screen" id="mainScreen" style="display:none;">
+            <div class="book-wrapper" id="bookWrapper">
+                <div class="book" id="book">
+                    <div class="cover cover-default" id="cover">
+                        <div class="cover-content">
+                            <h1>📖 Дневник жизни</h1>
+                            <p>Нажми, чтобы открыть</p>
+                        </div>
+                    </div>
+
+                    <div class="pages-container" id="pagesContainer">
+                        <div class="page-left" id="pageLeft"></div>
+                        <div class="page-right" id="pageRight"></div>
+                    </div>
+
+                    <div class="page-info" id="pageInfo">Страница 1 из 1</div>
+
+                    <div class="controls" id="controls">
+                        <button id="addPageBtn">➕ Новая страница</button>
+                        <button id="exportBtn">📥 Экспорт</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings" id="settingsToggle">
+                <button class="settings-btn">⚙️</button>
+            </div>
+
+            <div class="settings-panel" id="settingsPanel">
+                <div class="settings-panel-content">
+                    <h2>⚙️ Настройки</h2>
+                    <button class="close-settings" id="closeSettings">✕</button>
+
+                    <div class="settings-section">
+                        <h3>👤 Профиль</h3>
+                        <p><strong>Имя:</strong> <span id="profileName">—</span></p>
+                        <p><strong>Дата рождения:</strong> <span id="profileBirth">—</span></p>
+                        <p><strong>Город:</strong> <span id="profileCity">—</span></p>
+                        <button id="logoutBtn" class="settings-action-btn">Выйти</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>📏 Размер книги</h3>
+                        <input type="range" id="bookSizeSlider" min="40" max="100" value="50">
+                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#a89880;">
+                            <span>40%</span>
+                            <span id="sizeValue">50%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>📚 Обложка</h3>
+                        <div class="cover-options">
+                            <button class="cover-btn default active" data-cover="default"></button>
+                            <button class="cover-btn dark" data-cover="dark"></button>
+                            <button class="cover-btn light" data-cover="light"></button>
+                            <button class="cover-btn green" data-cover="green"></button>
+                        </div>
+                        <div style="margin-top:8px;font-size:0.9rem;color:#a89880;" id="coverNameDisplay">Классическая</div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>🎨 Фон</h3>
+                        <div class="bg-options">
+                            <button class="bg-btn active" data-bg="paper">Бумага</button>
+                            <button class="bg-btn" data-bg="blue">Синий</button>
+                            <button class="bg-btn" data-bg="dark">Тёмный</button>
+                            <button class="bg-btn" data-bg="light">Светлый</button>
+                            <button class="bg-btn" data-bg="green">Зелёный</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>✍️ Шрифт</h3>
+                        <select id="fontSelect" class="settings-select">
+                            <option value="marck">Старинный</option>
+                            <option value="caveat">Рукописный</option>
+                            <option value="playfair">Классический</option>
+                        </select>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>📄 Разлиновка</h3>
+                        <div class="ruler-options">
+                            <button class="ruler-btn active" data-ruler="line">Линейка</button>
+                            <button class="ruler-btn" data-ruler="square">Клетка</button>
+                            <button class="ruler-btn" data-ruler="none">Без</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>📊 Статистика</h3>
+                        <div class="stat-item"><span>Всего:</span> <strong id="statTotal">0</strong></div>
+                        <div class="stat-item"><span>Закрытых:</span> <strong id="statLocked">0</strong></div>
+                        <div class="stat-item"><span>Открытых:</span> <strong id="statOpen">0</strong></div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>🔐 Пароль</h3>
+                        <input type="password" id="passwordInput" placeholder="Введите пароль" class="settings-input">
+                        <button id="savePasswordBtn" class="settings-action-btn">Сохранить</button>
+                        <div id="passwordStatus" style="font-size:0.8rem;color:#a89880;margin-top:6px;">Пароль не установлен</div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>⚠️ Сброс</h3>
+                        <button id="resetDataBtn" class="settings-action-btn" style="background:#b91c1c;color:white;">Сбросить всё</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+    <div class="custom-modal" id="addPageModal">
+        <div class="custom-modal-content">
+            <div class="modal-header">
+                <h3>📄 Новая страница</h3>
+                <button class="modal-close-btn" id="closeAddModal">✕</button>
+            </div>
+            <p>Какой будет эта страница?</p>
+            <div class="modal-buttons">
+                <button class="modal-open-btn">📖 Открытая</button>
+                <button class="modal-lock-btn">🔒 Закрытая</button>
+            </div>
+            <button class="modal-cancel-btn" id="cancelAddModal">Отмена</button>
+        </div>
+    </div>
+
+    <div class="custom-modal" id="passwordModal">
+        <div class="custom-modal-content">
+            <div class="modal-header">
+                <h3>🔑 Введите пароль</h3>
+                <button class="modal-close-btn" id="closePasswordModal">✕</button>
+            </div>
+            <p>Эта страница закрыта. Введите пароль.</p>
+            <input type="password" id="customPasswordInput" placeholder="Введите пароль" class="modal-input">
+            <div class="modal-buttons">
+                <button class="modal-cancel-btn" id="customPasswordCancel">Отмена</button>
+                <button class="modal-confirm-btn" id="customPasswordConfirm">Разблокировать</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-modal" id="noPasswordModal">
+        <div class="custom-modal-content">
+            <div class="modal-header">
+                <h3>🔐 Пароль не установлен</h3>
+                <button class="modal-close-btn" id="closeNoPasswordModal">✕</button>
+            </div>
+            <p>Чтобы создать закрытую страницу, сначала установите пароль в настройках.</p>
+            <button class="modal-confirm-btn" id="goToSettingsBtn">Перейти в настройки</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
