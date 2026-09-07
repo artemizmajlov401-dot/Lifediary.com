@@ -281,82 +281,6 @@ body {
     position: relative;
 }
 
-/* АНИМАЦИЯ РУЧКИ */
-.page .text .char {
-    display: inline;
-    opacity: 0;
-    animation: typeChar 0.1s ease forwards;
-}
-
-@keyframes typeChar {
-    0% {
-        opacity: 0;
-        transform: translateY(1px) scale(0.95);
-        color: #4a2f1e;
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        color: #2d2a24;
-    }
-}
-
-.page .text .pen-icon {
-    display: inline-block;
-    font-size: 0.9rem;
-    animation: penWrite 0.6s ease infinite alternate;
-    margin-left: 1px;
-    color: #4a2f1e;
-}
-
-@keyframes penWrite {
-    0% {
-        transform: translateY(0) rotate(-5deg);
-    }
-    100% {
-        transform: translateY(-2px) rotate(5deg);
-    }
-}
-
-.page .text .char.writing {
-    animation: inkAppear 0.15s ease forwards;
-}
-
-@keyframes inkAppear {
-    0% {
-        opacity: 0.3;
-        transform: scale(0.8);
-        color: #4a2f1e;
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        color: #2d2a24;
-    }
-}
-
-.page .text .pen-trail {
-    display: inline-block;
-    width: 2px;
-    height: 1.2em;
-    background: #4a2f1e;
-    animation: penTrail 0.3s ease infinite alternate;
-    vertical-align: text-bottom;
-    margin-left: 1px;
-    opacity: 0.5;
-}
-
-@keyframes penTrail {
-    0% {
-        opacity: 0.3;
-        height: 0.8em;
-    }
-    100% {
-        opacity: 0.8;
-        height: 1.2em;
-    }
-}
-
 .page .text:empty::before {
     content: 'Напишите что-то...';
     color: #b0a898;
@@ -945,46 +869,120 @@ body.dark .custom-modal-content {
     background: #1a1a2e;
 }
 
+/* ===== ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ ДЛЯ ТЕЛЕФОНА ===== */
 @media (max-width: 600px) {
-    .pages-container {
-        flex-direction: column;
+    .book-wrapper {
+        width: 85vw !important;
+        height: 60vh !important;
+        max-width: 95vw !important;
+        max-height: 65vh !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 auto;
     }
+
+    .book {
+        border-radius: 10px;
+    }
+
+    .cover-content h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .cover-content p {
+        font-size: 0.8rem !important;
+    }
+
     .page-left,
     .page-right {
-        padding: 12px 14px;
-        min-height: 30vh;
+        padding: 12px 14px !important;
+        min-height: 30vh !important;
     }
+
     .page-left {
-        border-right: none;
+        border-right: none !important;
         border-bottom: 2px solid #e8e0d4;
     }
+
+    .pages-container {
+        flex-direction: column !important;
+        border-radius: 10px;
+    }
+
     .page .text {
-        font-size: 0.9rem;
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
     }
-    .cover-content h1 {
-        font-size: 1.6rem;
+
+    .page .date {
+        font-size: 0.65rem !important;
     }
-    .settings-panel {
-        width: 100%;
-        right: -100%;
+
+    .controls button {
+        font-size: 0.7rem !important;
+        padding: 4px 10px !important;
     }
-    .register-screen {
-        padding: 24px 16px;
-    }
+
     .settings {
-        top: 10px;
-        right: 14px;
+        top: 10px !important;
+        right: 12px !important;
     }
+
     .settings-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 1.2rem;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 1rem !important;
     }
+
+    .settings-panel {
+        width: 100% !important;
+        right: -100% !important;
+    }
+
+    .settings-panel.open {
+        right: 0 !important;
+    }
+
     .custom-modal-content {
-        padding: 20px 16px;
+        padding: 18px 16px !important;
+        max-width: 90% !important;
     }
-    .book-wrapper {
-        max-width: 95vw;
-        max-height: 50vh;
+
+    .modal-header h3 {
+        font-size: 1rem !important;
+    }
+
+    .modal-buttons button {
+        padding: 6px 14px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .register-screen {
+        padding: 24px 16px !important;
+    }
+
+    .register-box h1 {
+        font-size: 2rem !important;
+    }
+
+    .register-box p {
+        font-size: 0.9rem !important;
+    }
+
+    .reg-input {
+        padding: 10px 14px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .reg-btn {
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+    }
+
+    .page-info {
+        font-size: 0.65rem !important;
+        padding: 4px 0 !important;
     }
 }
