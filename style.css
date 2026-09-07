@@ -985,4 +985,22 @@ body.dark .custom-modal-content {
         font-size: 0.65rem !important;
         padding: 4px 0 !important;
     }
+
+    .book-wrapper {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 auto;
+    }
+
+    .main-screen {
+        align-items: flex-start !important;
+        padding-top: 20px !important;
+    }
+
+    .settings {
+        top: 10px !important;
+        right: 12px !important;
+    }
 }
